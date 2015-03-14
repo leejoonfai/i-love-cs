@@ -4,6 +4,7 @@
 #define ADTE_AND_TIME_H
 
 #include<string>
+#include <sstream>
 using namespace std;
 
 class DateAndTime {
@@ -28,9 +29,15 @@ private:
 	int _hour;
 	int _minute;
 
+	bool isValidDateFormat();
+	bool isValidTimeFormat();
+	bool isValidDateAndTimeValues();
+
 public:
 
+	DateAndTime();
 	DateAndTime(int, int, int, int, int);
+	DateAndTime& operator= (const DateAndTime& rhs);
 
 	bool isValidDateAndTime();	// for Logic to check for VALIDITY of DateAndTime
 	bool hasDateAndTime();		// for UI to check whether to print startTime or endTime

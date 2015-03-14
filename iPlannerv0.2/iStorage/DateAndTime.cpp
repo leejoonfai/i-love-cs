@@ -13,6 +13,12 @@ const int DateAndTime::MAX_MINUTE = 59;
 const int DateAndTime::EMPTYFIELD_DATETIME = -1;
 const int DateAndTime::INVALID_DATETIME = -2;
 
+DateAndTime::DateAndTime() : _year(EMPTYFIELD_DATETIME),
+							 _month(EMPTYFIELD_DATETIME),
+							 _day(EMPTYFIELD_DATETIME),
+							 _hour(EMPTYFIELD_DATETIME),
+							 _minute(EMPTYFIELD_DATETIME){
+}
 
 DateAndTime::DateAndTime(int year, int month, int day, int hour, int minute) {
 	if (year == EMPTYFIELD_DATETIME || (year <= MAX_YEAR && year >= MIN_YEAR)) {
@@ -46,7 +52,34 @@ DateAndTime::DateAndTime(int year, int month, int day, int hour, int minute) {
 	}
 }
 
-bool DateAndTime::isValidDateAndTime() {
+DateAndTime& DateAndTime::operator= (const DateAndTime& rhs) {
+	if (this != &rhs) {
+		this->_year = rhs._year;
+		this->_month = rhs._month;
+		this->_day = rhs._day;
+		this->_hour = rhs._hour;
+		this->_minute = rhs._minute;
+	}
+	return *this;
+}
+
+bool DateAndTime::isValidDateFormat() {
+	if (_month != EMPTYFIELD_DATETIME && _day != EMPTYFIELD_DATETIME) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool DateAndTime::isValidTimeFormat() {
+	if (_hour != EMPTYFIELD_DATETIME) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool DateAndTime::isValidDateAndTimeValues() {
 	if (_year != INVALID_DATETIME && _month != INVALID_DATETIME && _day != INVALID_DATETIME && _hour != INVALID_DATETIME && _minute != INVALID_DATETIME) {
 		return true;
 	} else {
@@ -54,13 +87,39 @@ bool DateAndTime::isValidDateAndTime() {
 	}
 }
 
+bool DateAndTime::isValidDateAndTime(){
+	if (isValidDateFormat() && isValidTimeFormat() && isValidDateAndTimeValues()) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 bool DateAndTime::hasDateAndTime() {
-	/////////// I STOPPED HERE ///////////////
-	//////////////////////////////////////////
-	//////////////////////////////////////////
-	//////////////////////////////////////////
+	if (_year != EMPTYFIELD_DATETIME && _month != EMPTYFIELD_DATETIME && _day != EMPTYFIELD_DATETIME && _hour != EMPTYFIELD_DATETIME && _minute != EMPTYFIELD_DATETIME) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 string DateAndTime::displayDateAndTime() {
+	ostringstream output;
 
+	output << _day << "/" << _month;
+	if (_year != EMPTYFIELD_DATETIME) {
+		output << "/" << _year;
+	} else {
+		output << "   ";
+	}
+	if (_hour != EMPTYFIELD_DATETIME) {
+		output << " " << _hour << ":";
+	}
+	if (_minute != EMPTYFIELD_DATETIME) {
+		output << _minute;
+	} else {
+		output << "00";
+	}
+
+	return output.str();
 }

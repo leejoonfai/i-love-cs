@@ -3,6 +3,9 @@
 #ifndef LOGIC_H
 #define LOGIC_H
 
+#include "..\iStorage\Schedule.h"
+using namespace std;
+
 class Logic
 {
 private:

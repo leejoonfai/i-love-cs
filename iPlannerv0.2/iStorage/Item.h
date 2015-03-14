@@ -5,17 +5,20 @@
 
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include "DateAndTime.h"
 using namespace std;
 
 class Item {
 private:
 
+	static const int EMPTYFIELD_ID;
 	static const string EMPTYFIELD_NAME;
 	static const string EMPTYFIELD_DESCRIPTION;
-	static const int EMPTYFIELD_ITEMID;
+	static const DateAndTime EMPTYFIELD_DATEANDTIME;
 	static const char EMPTYFIELD_PRIORITY;
 	static const char EMPTYFIELD_LABEL;
+	static const bool EMPTYFIELD_ISCOMPLETED;
 
 	unsigned int _id;
 	string _name;
@@ -29,6 +32,7 @@ private:
 public:
 
 	Item();
+	Item& operator= (const Item &rhs);
 
 	void setID(unsigned int id);
 	void setName(string name);
