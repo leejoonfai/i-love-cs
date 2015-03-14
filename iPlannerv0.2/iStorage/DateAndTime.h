@@ -20,6 +20,7 @@ private:
 	static const int MIN_MINUTE;
 	static const int MAX_MINUTE;
 	static const int EMPTYFIELD_DATETIME;
+	static const int INVALID_DATETIME;
 
 	int _year;
 	int _month;
@@ -27,19 +28,12 @@ private:
 	int _hour;
 	int _minute;
 
-	bool isValidDate();
-	bool isValidYear();
-	bool isValidMonth();
-	bool isValidDay();
-	bool isValidTime();
-	bool isValidHour();
-	bool isValidMinute();
-
 public:
 
 	DateAndTime(int, int, int, int, int);
 
-	bool isValidDateAndTime();
+	bool isValidDateAndTime();	// for Logic to check for VALIDITY of DateAndTime
+	bool hasDateAndTime();		// for UI to check whether to print startTime or endTime
 	string displayDateAndTime();
 };
 

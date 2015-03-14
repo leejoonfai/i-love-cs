@@ -52,8 +52,8 @@ void Item::setCompletion(bool isCompleted) {
 string Item::displayItem() {
 	ostringstream output;
 	bool hasDescription = (_description != EMPTYFIELD_DESCRIPTION);
-	bool hasStartTime = _startTime.isValidDateAndTime;
-	bool hasEndTime = _endTime.isValidDateAndTime;
+	bool hasStartTime = _startTime.hasDateAndTime;
+	bool hasEndTime = _endTime.hasDateAndTime;
 	bool hasPriority = (_priority != EMPTYFIELD_PRIORITY);
 	bool hasLabel = (_label != EMPTYFIELD_LABEL);
 	

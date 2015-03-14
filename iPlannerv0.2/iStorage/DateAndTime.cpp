@@ -11,72 +11,54 @@ const int DateAndTime::MAX_HOUR = 23;
 const int DateAndTime::MIN_MINUTE = 0;
 const int DateAndTime::MAX_MINUTE = 59;
 const int DateAndTime::EMPTYFIELD_DATETIME = -1;
+const int DateAndTime::INVALID_DATETIME = -2;
+
 
 DateAndTime::DateAndTime(int year, int month, int day, int hour, int minute) {
-	_year = year;
-	_month = month;
-	_day = day;
-	_hour = hour;
-	_minute = minute;
-}
-
-bool DateAndTime::isValidDate() {
-	if (isValidYear() && isValidMonth() && isValidDay()) {
-		return true;
-	}
-	else if (isValidMonth() && isValidDate()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-bool DateAndTime::isValidYear() {
-	if (_year <= MAX_YEAR && _year >= MIN_YEAR) {
-		return true;
+	if (year == EMPTYFIELD_DATETIME || (year <= MAX_YEAR && year >= MIN_YEAR)) {
+		_year = year;
 	} else {
-		return false;
+		_year = INVALID_DATETIME;
 	}
-}
 
-bool DateAndTime::isValidMonth() {
-	if (_month <= MAX_MONTH && _month >= MIN_MONTH) {
-		return true;
+	if (month == EMPTYFIELD_DATETIME || (month <= MAX_MONTH && month >= MIN_MONTH)) {
+		_month = month;
 	} else {
-		return false;
+		_month = INVALID_DATETIME;
 	}
-}
 
-bool DateAndTime::isValidDay() {
-	if (_day <= MAX_DAY && _day >= MIN_DAY) {
-		return true;
+	if (day == EMPTYFIELD_DATETIME || (day <= MAX_DAY && day >= MIN_DAY)) {
+		_day = day;
 	} else {
-		return false;
+		_day = INVALID_DATETIME;
 	}
-}
 
-bool DateAndTime::isValidTime() {
-	if (isValidHour)
-}
+	if (hour == EMPTYFIELD_DATETIME || (hour <= MAX_HOUR && hour >= MIN_HOUR)) {
+		_hour = hour;
+	} else {
+		_year = INVALID_DATETIME;
+	}
 
-
-bool DateAndTime::isValidHour() {
-
-}
-
-bool DateAndTime::isValidMinute() {
-
+	if (minute == EMPTYFIELD_DATETIME || (minute <= MAX_MINUTE && year >= MIN_MINUTE)) {
+		_minute = minute;
+	} else {
+		_minute = INVALID_DATETIME;
+	}
 }
 
 bool DateAndTime::isValidDateAndTime() {
-	if (isValidDate() && isValidTime()) {
-		return true;
-	} else if (isValidDate()) {
+	if (_year != INVALID_DATETIME && _month != INVALID_DATETIME && _day != INVALID_DATETIME && _hour != INVALID_DATETIME && _minute != INVALID_DATETIME) {
 		return true;
 	} else {
 		return false;
 	}
+}
+
+bool DateAndTime::hasDateAndTime() {
+	/////////// I STOPPED HERE ///////////////
+	//////////////////////////////////////////
+	//////////////////////////////////////////
+	//////////////////////////////////////////
 }
 
 string DateAndTime::displayDateAndTime() {
